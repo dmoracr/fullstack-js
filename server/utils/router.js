@@ -1,7 +1,10 @@
 const router = (routes) => {
   return (req, res) => {
-    const url = req.url.replace(/^\//, "");
+    const [uri, queryString] = req.url.split("?");
+    const url = uri.replace(/^\//, "");
+
     if (url in routes) {
+      req.body = new URLSearchParams(queryString);
       routes[url](req, res);
     } else {
       res.writeHead(404);
