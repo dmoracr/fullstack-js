@@ -1,11 +1,11 @@
 const router = (routes) => {
   return (req, res) => {
-    const [uri, queryString] = req.url.split("?");
-    const url = uri.replace(/^\//, "");
+    const [url, queryString] = req.url.split("?");
+    const uri = url.replace(/^\//, "");
 
-    if (url in routes) {
+    if (uri in routes) {
       req.body = new URLSearchParams(queryString);
-      routes[url](req, res);
+      routes[uri](req, res);
     } else {
       res.writeHead(404);
       res.end("Not found");

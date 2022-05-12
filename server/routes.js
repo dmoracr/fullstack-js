@@ -1,4 +1,3 @@
-const { URL } = require("url");
 const { get } = require("./utils/request");
 
 const headers = {
